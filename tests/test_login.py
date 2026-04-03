@@ -32,12 +32,19 @@ def test_successful_login(page,test_data,env_config,get_full_url):
 
 @pytest.mark.smoke
 def test_invalid_login_error(page,test_data,env_config):
+
+    """Test to verify that an error message is displayed when login fails with invalid credentials."""
+
     #Setup
     login = LoginPage(page)
 
-    login.navigate_to(env_config["base_url"])
-    login.login(test_data["users"]["invalid"],env_config["password"])
+    with allure.step("Navigate to Home Page"):
+        login.navigate_to(env_config["base_url"])
+
+    with allure.step("Attempt Invalid Login"):
+        login.login(test_data["users"]["invalid"],env_config["password"])
 
     ##Error
-    expect(login._error_message).to_be_visible()
-    expect(login._error_message).to_have_text(test_data["error_messages"]["invalid_msg"])
+    with allure.step("Verify that error message is displayed"):
+        expect(login._error_message).to_be_visible()
+        expect(login._error_message).to_have_text(test_data["error_messages"]["invalid_msg"])
