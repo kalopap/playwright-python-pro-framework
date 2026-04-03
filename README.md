@@ -24,6 +24,9 @@ A professional-grade automation framework using Playwright, Pytest, and the Page
 5. Create a `.env` file with `BASE_URL` and `SAUCE_PASSWORD`.
 
 ## Running Tests
-Run all tests across multiple browsers:
+Tests run in **Headless Chromium** by default for maximum CI speed and stability.
+
+### Local Execution
+To run across all browsers locally:
 ```bash
-pytest
+pytest --browser chromium --browser firefox --browser webkit
