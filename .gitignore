@@ -1,0 +1,16 @@
+## Environments
+.env
+.venv/
+env/
+
+## Python
+__pycache__/
+*.py[cod]
+
+##Playwright pytest reports
+test-results/
+report.html
+screenshots/
+videos/
+.pytest_cache/
+allure-results

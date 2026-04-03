@@ -1,0 +1,32 @@
+{
+    "users":{
+        "standard": "standard_user",
+        "locked": "locked_out_user",
+        "performance_gl": "performance_glitch_user",
+        "error":"error_user",
+        "visual": "visual_user",
+        "problem":"problem_user",
+        "invalid":"invalid_user"
+    },
+    "error_messages":{
+        "invalid_msg":"Epic sadface: Username and password do not match any user in this service",
+        "locked_out_msg":"Epic sadface: Sorry, this user has been locked out."
+    },
+    "endpoints":{
+        "inventory":"/inventory.html",
+        "cart":"/cart.html",
+        "checkout1":"/checkout-step-one.html",
+        "checkout2":"/checkout-step-two.html",
+        "finish":"/checkout-complete.html"
+
+    },
+    "header_titles":{
+        "inventory":"Products",
+        "cart":"Your Cart",
+        "checkout1":"Checkout: Your Information",
+        "checkout2":"Checkout: Overview",
+        "finish":"Checkout: Complete!",
+        "final_message":"THANK YOU FOR YOUR ORDER"
+    }
+
+}
