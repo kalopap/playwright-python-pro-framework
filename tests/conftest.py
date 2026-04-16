@@ -2,6 +2,7 @@ import pytest
 import json
 import os
 from dotenv import load_dotenv
+import allure
 
 load_dotenv()
 
@@ -25,3 +26,27 @@ def get_full_url(env_config,test_data):
     def _build_url(endpoint_key):
         return env_config["base_url"] + test_data["endpoints"][endpoint_key]
     return _build_url
+
+@pytest.fixture
+def setup_inventory(page,test_data,env_config):
+    """ Log in to the inventory page"""
+    from pages.login_page import LoginPage
+    login = LoginPage(page)
+    login.navigate_to(env_config["base_url"])
+    login.login(test_data["users"]["standard"],env_config["password"])
+
+
+@pytest.hookimpl(tryfirst=True,hookwrapper=True)
+def pytest_runtest_makereport(item,call):
+    """Hook to capture screenshots on test failure"""
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call" and report.failed:
+        page = item.funcargs.get("page")
+        if page:
+            allure.attach(
+                page.screenshot(full_page=True),
+                name="failure_screenshot",
+                attachment_type=allure.attachment_type.PNG
+            )
